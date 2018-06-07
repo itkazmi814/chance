@@ -1,0 +1,31 @@
+x-swagger-router-controller: chargeController
+get:
+  description: Builds sample charge file for import
+  operationId: build
+  parameters:
+    - name: numCharges
+      in: path
+      description: Number of charges to build
+      required: true
+      type: integer
+  responses:
+    '200':
+      description: Success
+      schema:
+        $ref: '#/definitions/SuccessResponse'
+    '400':
+      description: Bad Request
+      schema:
+        $ref: '#/definitions/ErrorResponse'
+    '401':
+      description: Unauthorized
+      schema:
+        $ref: '#/definitions/ErrorResponse'
+    '403':
+      description: Forbidden
+      schema:
+        $ref: '#/definitions/ErrorResponse'
+    default:
+      description: Error
+      schema:
+        $ref: '#/definitions/ErrorResponse'

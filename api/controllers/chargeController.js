@@ -3,10 +3,10 @@
 const chargeService = require('../services/chargeService');
 
 /**
- * Swagger Controller method for GET /charges/build Endpoint
+ * Swagger Controller method for GET /charges/build/:numCharges Endpoint
  */
 function build(req, res) {
-  const numCharges = req.swagger.params.numCharges.value;
+  const numCharges = req.params.numCharges;
   chargeService.build(numCharges, (err, message) => {
     if (err) {
       res.status(400).json({ code: 400, message: err.message }).end();
@@ -16,6 +16,25 @@ function build(req, res) {
   });
 }
 
+/**
+ * Swagger Controller method for GET /charges/retrieve Endpoint
+ */
+function retrieve(req, res) {
+  chargeService.retrieve((err, data) => {
+    if (err) {
+      res.status(400).json({ code: 400, message: err.message }).end();
+    } else {
+      const toReturn = { 
+        code: 200, 
+        message: data.message, 
+        charges: data.charges
+      }
+      res.status(200).json(toReturn).end();
+    }
+  })
+}
+
 module.exports = {
-  build: build
+  build: build,
+  retrieve: retrieve
 };

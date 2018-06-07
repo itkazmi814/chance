@@ -1,2 +1,4 @@
 /charges/build/{numCharges}:
   $ref: ./charges_build.yaml
+/charges/retrieve:
+  $ref: ./charges_retrieve.yaml

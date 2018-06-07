@@ -3,6 +3,7 @@
 const fs = require('fs');
 const Charge = require('../models/Charge')
 const { Model } = require('objection');
+
 const pgCredentials = require('../db/pgCredentials')
 const knex = require('knex')({
   client: 'pg',
@@ -11,6 +12,7 @@ const knex = require('knex')({
     database: 'zylo_chance'
   }
 })
+
 Model.knex(knex)
 
 const readChargeFile = fileName => {
@@ -28,6 +30,7 @@ const insertCharges = chargeData => {
     await Charge
       .query()  
       .insert(charge);
+      
     checkForProcessExit(chargeData.length === i+1)
   })
 }
@@ -40,5 +43,5 @@ const checkForProcessExit = isDone => {
 }
 
 module.exports = {
-  readChargeFile: fileName => readChargeFile(fileName)
+  readChargeFile: readChargeFile
 }

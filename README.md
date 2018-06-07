@@ -3,7 +3,7 @@
 ### Setup
 Run `npm install`
 
-Create the following below file:
+Create the below file:
 
 *db/pgCredentials.js*
 ```

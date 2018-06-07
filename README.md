@@ -4,7 +4,8 @@
 Run `npm install`
 
 Create the following below file:
-*db/pgCredenials.js*
+
+*db/pgCredentials.js*
 ```
 module.exports = {
   host: '<your host>',

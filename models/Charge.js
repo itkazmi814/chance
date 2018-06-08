@@ -8,10 +8,6 @@ class Charge extends Model {
   static get idColumn() {
     return 'id';
   }
-
-  getContext() {
-    return this;
-  }
 }
 
 module.exports = Charge;

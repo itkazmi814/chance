@@ -8,9 +8,9 @@
     "mergeSwagger": "node api/helpers/mergeSwagger.js",
     "prestart": "npm run mergeSwagger",
     "pretest": "npm run mergeSwagger",
+    "import": "node bin/importCharges.js -f temp/charges.json",
     "lint": "eslint . --ext .js || true",
-    "test": "istanbul test node_modules/mocha/bin/_mocha",
-    "import": "node bin/import.js -f temp/charges.json"
+    "test": "istanbul test node_modules/mocha/bin/_mocha"
   },
   "repository": {
     "type": "git",
@@ -27,7 +27,6 @@
   "homepage": "https://github.com/zylo/chance#readme",
   "dependencies": {
     "body-parser": "^1.18.2",
-    "commander": "^2.15.1",
     "cors": "^2.8.4",
     "express": "^4.16.3",
     "helmet": "^3.12.0",

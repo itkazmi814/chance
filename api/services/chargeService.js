@@ -64,5 +64,6 @@ async function retrieve(cb) {
 
 module.exports = {
   build: build,
+  createCharge: createCharge,
   retrieve: retrieve
 };

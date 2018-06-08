@@ -16,9 +16,7 @@ createdb zylo_chance
 psql -d zylo_chance < db/ddl.sql
 ```
 
-Add your Postgres credentials:
-
-*db/pgCredentials.js*
+Add your Postgres credentials by creating a file db/pgCredentials.js with the following:
 ```
 module.exports = {
   host: '<your host>',

@@ -1,11 +1,12 @@
+#!/usr/bin/env node
+
 'use strict';
 
+const logger = require('../api/helpers/logger');
 const fs = require('fs');
 const Charge = require('../models/Charge');
 const { Model } = require('objection');
-
 const pgCredentials = require('../db/pgCredentials');
-
 const knex = require('knex')({
   client: 'pg',
   connection: {
@@ -16,11 +17,10 @@ const knex = require('knex')({
 
 Model.knex(knex);
 
-const checkForProcessExit = (isDone) => {
-  if (isDone) {
-    process.exit(0);
-  }
-};
+process.on('uncaughtException', (err) => {
+  logger.error('Unexpected Error', err);
+  process.exit(1);
+});
 
 const insertCharges = (chargeData) => {
   chargeData.forEach(async (charge, i) => {
@@ -28,7 +28,9 @@ const insertCharges = (chargeData) => {
       .query()
       .insert(charge);
 
-    checkForProcessExit(chargeData.length === i + 1);
+    if (chargeData.length === i + 1) {
+      process.exit(0);
+    }
   });
 };
 
@@ -41,6 +43,4 @@ const readChargeFile = (fileName) => {
   });
 };
 
-module.exports = {
-  readChargeFile: readChargeFile
-};
+readChargeFile(process.argv[3]);

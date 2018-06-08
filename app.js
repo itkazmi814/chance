@@ -7,21 +7,19 @@ const swaggerParser = require('swagger-parser');
 const express = require('express');
 
 const app = express();
+require('./api/routes/apiRoutes')(app);
 
-// Run back end api listeners
-require('./api/routes/apiRoutes')(app)
-
-// Make connection to postgres
 const { Model } = require('objection');
-const pgCredentials = require('./db/pgCredentials')
+const pgCredentials = require('./db/pgCredentials');
 const knex = require('knex')({
   client: 'pg',
   connection: {
     ...pgCredentials,
     database: 'zylo_chance'
   }
-})
-Model.knex(knex)
+});
+
+Model.knex(knex);
 
 const port = '4000';
 process.env.NODE_ENV = 'development';

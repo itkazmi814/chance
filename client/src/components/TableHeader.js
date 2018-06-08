@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TableHeader = props => (
+const TableHeader = () => (
   <thead>
     <tr>
       <th>Count</th>
@@ -10,6 +10,6 @@ const TableHeader = props => (
       <th>Description</th>
     </tr>
   </thead>
-)
+);
 
 export default TableHeader;

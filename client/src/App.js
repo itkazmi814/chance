@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { retrieveCharges } from './actions'
+import retrieveCharges from './actions'
 import api from './util/api';
 import { Table, Jumbotron } from 'react-bootstrap'
 import { ButtonContainer, Charge, ChargeSetCount, TableHeader } from './components'

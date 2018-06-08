@@ -3,8 +3,7 @@
 const _ = require('lodash');
 const fs = require('fs');
 const moment = require('moment');
-const path = require('path');
-const Charge = require('../../models/Charge')
+const Charge = require('../../models/Charge');
 
 function createCharge(appName) {
   return {
@@ -18,11 +17,11 @@ function createCharge(appName) {
 
 function buildChargeFile(charges) {
   const chargeFilePath = `${__dirname}/../../temp/`;
-  
-  if(!fs.existsSync(chargeFilePath)) {
+
+  if (!fs.existsSync(chargeFilePath)) {
     fs.mkdirSync(chargeFilePath);
   }
-  
+
   fs.writeFileSync(`${chargeFilePath}/charges.json`, JSON.stringify(charges));
 }
 
@@ -35,7 +34,7 @@ function build(numCharges, cb) {
   }
 
   try {
-    buildChargeFile(charges)
+    buildChargeFile(charges);
     cb(null, 'Successfully created charge file.');
   } catch (e) {
     cb(new Error('Failed to created charge file.'));
@@ -43,25 +42,23 @@ function build(numCharges, cb) {
 }
 
 async function retrieve(cb) {
-  console.log("running retrieve")
   try {
-    console.log(1)
     const charges = await Charge
       .query()
-      .select('amount','name','type','description')
+      .select('amount', 'name', 'type', 'description')
       .count('id')
-      .groupBy('amount','name','type','description')
+      .groupBy('amount', 'name', 'type', 'description')
       .orderBy('name')
-      .orderBy('amount','desc')
-    console.log(2)
+      .orderBy('amount', 'desc');
+
     const data = {
       message: 'Successfully retrieved charges from databse.',
       charges: charges
-    }
-    console.log(3)
-    cb(null, data)
+    };
+
+    cb(null, data);
   } catch (e) {
-    cb(new Error('Failed to retrieve charges from database.'))
+    cb(new Error('Failed to retrieve charges from database.'));
   }
 }
 

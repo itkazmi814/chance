@@ -2,7 +2,7 @@
 
 ## Setup
 
-### Install necessary npm packages"
+### Install necessary npm packages
 ```
 npm install
 cd client
@@ -21,7 +21,7 @@ Add your Postgres credentials by creating a file db/pgCredentials.js with the fo
 module.exports = {
   host: '<your host>',
   user: '<postgres user>',
-  password: ' <postgres user password> '
+  password: ' <postgres user password>'
 };
 ```
 

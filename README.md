@@ -3,6 +3,7 @@
 ## Setup
 
 ### Install necessary npm packages
+From root
 ```
 npm install
 cd client
@@ -10,6 +11,7 @@ npm install
 ```
 
 ### Postgres setup
+
 
 ```
 createdb zylo_chance

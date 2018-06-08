@@ -11,8 +11,7 @@ npm install
 ```
 
 ### Postgres setup
-
-
+Create and seed the database
 ```
 createdb zylo_chance
 psql -d zylo_chance < db/ddl.sql
